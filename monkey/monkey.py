@@ -1,5 +1,5 @@
 # export PATH=/usr/lib/jvm/java-8-openjdk-amd64/bin:$PATH
-# /home/stijanic/Android/Sdk/tools/bin/monkeyrunner ~/monkey.py
+# /home/stijanic/Android/Sdk/tools/bin/monkeyrunner monkey/monkey.py
 # Imports the monkeyrunner modules used by this program
 from com.android.monkeyrunner import MonkeyRunner, MonkeyDevice
 
@@ -10,7 +10,7 @@ device = MonkeyRunner.waitForConnection()
 # to see if the installation worked.
 # device.removePackage('com.astroweb')
 # MonkeyRunner.sleep (30)
-# device.installPackage('./app/build/outputs/apk/debug/app-debug.apk')
+device.installPackage('./app/build/outputs/apk/debug/app-debug.apk')
 
 # sets a variable with the package's internal name
 package = 'com.astroweb'
@@ -23,6 +23,8 @@ runComponent = package + '/' + activity
 
 # Runs the component
 device.startActivity(component=runComponent)
+
+MonkeyRunner.sleep (10)
 
 # Presses the Menu button
 # device.press('KEYCODE_MENU', MonkeyDevice.DOWN_AND_UP)

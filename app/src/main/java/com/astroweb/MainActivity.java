@@ -18,6 +18,7 @@ import com.android.volley.toolbox.Volley;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -39,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(view -> {
             callAstrowebServer();
-            Snackbar.make(view, "Get you Natal Chart!", Snackbar.LENGTH_LONG)
+            Snackbar.make(view, "Get you Natal Chart! " + new Date(), Snackbar.LENGTH_LONG)
                     .setAction("Action", null).show();
         });
     }
@@ -81,7 +82,9 @@ public class MainActivity extends AppCompatActivity {
         // Instantiate the RequestQueue.
         RequestQueue queue = Volley.newRequestQueue(this);
         String urlPost = "https://stijanic-astroweb.herokuapp.com/api/post/" + Math.floor(Math.random() * 100);
-        String urlGet = "https://stijanic-astroweb.herokuapp.com/api/get/" + Math.floor(Math.random() * 100);
+        //String urlPost = "http://192.168.245.130:8080/api/post/" + Math.floor(Math.random() * 100);
+        String urlGet = "https://stijanic-astroweb.herokuapp.com/api/get/1"; // + Math.floor(Math.random() * 100);
+        //String urlGet = "http://10.0.2.2:8080/api/get/1"; // + Math.floor(Math.random() * 100);
 
         // Request a string response from the provided URL.
         StringRequest stringGetRequest = new StringRequest(
@@ -89,8 +92,9 @@ public class MainActivity extends AppCompatActivity {
                 urlGet,
                 response -> {
                     // Display the response string.
-                    resultGet = "Get response is:\n" + response;
-                    ((TextView) findViewById(R.id.textview_first)).setText(resultGet + "\n" + resultPost);
+                    resultGet = "Natal Chart of Person with id 1 at " + new Date() + " is:\n" + response;
+                    ((TextView) findViewById(R.id.textview_first)).setText(resultGet + "\n\n" + resultPost);
+                    Log.i(TAG, "*" + resultGet + "*" + resultPost + "*");
                 },
                 error -> Log.i(TAG, "That didn't work -> " + urlGet));
 
@@ -100,8 +104,9 @@ public class MainActivity extends AppCompatActivity {
                 urlPost,
                 response -> {
                     // Display the response string.
-                    resultPost = "Post response is:\n" + response;
-                    ((TextView) findViewById(R.id.textview_first)).setText(resultGet + "\n" + resultPost);
+                    resultPost = "Echo Post response is:\n" + response;
+                    ((TextView) findViewById(R.id.textview_first)).setText(resultGet + "\n\n" + resultPost);
+                    Log.i(TAG, "*" + resultGet + "*" + resultPost + "*");
                 },
                 error -> Log.i(TAG, "That didn't work!")) {
             @Override
