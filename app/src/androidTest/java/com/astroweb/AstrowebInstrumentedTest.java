@@ -6,6 +6,7 @@ import android.util.Log;
 
 import androidx.test.platform.app.InstrumentationRegistry;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
+
 import androidx.test.uiautomator.By;
 import androidx.test.uiautomator.UiDevice;
 import androidx.test.uiautomator.Until;
@@ -16,10 +17,11 @@ import org.junit.Test;
 import org.junit.rules.Timeout;
 import org.junit.runner.RunWith;
 
+import java.util.concurrent.TimeUnit;
+
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
 import static org.hamcrest.Matchers.notNullValue;
-
-import static org.junit.Assert.*;
 
 /**
  * Instrumented test, which will execute on an Android device.
@@ -37,7 +39,7 @@ public class AstrowebInstrumentedTest {
     public Timeout globalTimeout = Timeout.seconds(30);
 
     @Before
-    public void startMainActivityFromHomeScreen() {
+    public void getNatalChart() throws InterruptedException {
         // Initialize UiDevice instance
         UiDevice mDevice = UiDevice.getInstance(InstrumentationRegistry.getInstrumentation());
 
@@ -58,6 +60,9 @@ public class AstrowebInstrumentedTest {
 
         // Wait for the app to appear
         mDevice.wait(Until.hasObject(By.pkg(BASIC_SAMPLE_PACKAGE).depth(0)), LAUNCH_TIMEOUT);
+
+        mDevice.click(680, 1050);
+        TimeUnit.SECONDS.sleep(10);
     }
 
     @Test

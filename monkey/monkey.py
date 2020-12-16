@@ -1,5 +1,8 @@
-# export PATH=/usr/lib/jvm/java-8-openjdk-amd64/bin:$PATH
-# /home/stijanic/Android/Sdk/tools/bin/monkeyrunner monkey/monkey.py
+# export PATH=/opt/android-studio-4.1/android-studio/jre/bin:$PATH
+# /home/stijanic/Android/Sdk/emulator/emulator -list-avds
+# /home/stijanic/Android/Sdk/emulator/emulator -avd Nexus_4_API_29
+# /home/stijanic/Android/Sdk/tools/bin/monkeyrunner /home/stijanic/Projects/Astroweb-Android/monkey/monkey.py
+import datetime
 # Imports the monkeyrunner modules used by this program
 from com.android.monkeyrunner import MonkeyRunner, MonkeyDevice
 
@@ -34,8 +37,12 @@ while i < 6:
     device.touch(680, 1050, 'DOWN_AND_UP')
     i += 1
 
+MonkeyRunner.sleep (5)
+
 # Takes a screenshot
-# result = device.takeSnapshot()
+result = device.takeSnapshot()
+
+shot = 'astroweb-shot-' + datetime.datetime.now().strftime("%Y%m%d-%H%M%S") + '.png'
 
 # Writes the screenshot to a file
-# result.writeToFile('shot1.png','png')
+result.writeToFile(shot, 'png')
