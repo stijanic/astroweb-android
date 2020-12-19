@@ -1,7 +1,8 @@
-# export PATH=/opt/android-studio-4.1/android-studio/jre/bin:$PATH
-# /home/stijanic/Android/Sdk/emulator/emulator -list-avds
-# /home/stijanic/Android/Sdk/emulator/emulator -avd Nexus_4_API_29
-# /home/stijanic/Android/Sdk/tools/bin/monkeyrunner /home/stijanic/Projects/Astroweb-Android/monkey/monkey.py
+# export PATH=/home/stijanic/Software/android-studio/jre/bin:$PATH
+# /home/stijanic/Software/Android/Sdk/emulator/emulator -list-avds
+# /home/stijanic/Software/Android/Sdk/emulator/emulator -avd Nexus_4_API_29
+# /home/stijanic/Software/Android/Sdk/tools/bin/uiautomatorviewer
+# /home/stijanic/Software/Android/Sdk/tools/bin/monkeyrunner /home/stijanic/Projects/Astroweb-Android/monkey/monkey.py
 import datetime
 # Imports the monkeyrunner modules used by this program
 from com.android.monkeyrunner import MonkeyRunner, MonkeyDevice
@@ -40,6 +41,7 @@ while i < 6:
 MonkeyRunner.sleep (5)
 
 # Takes a screenshot
+# Do not enable WMVare "Accelerate 3D graphics" for screenshots to work!!!
 result = device.takeSnapshot()
 
 shot = 'astroweb-shot-' + datetime.datetime.now().strftime("%Y%m%d-%H%M%S") + '.png'
