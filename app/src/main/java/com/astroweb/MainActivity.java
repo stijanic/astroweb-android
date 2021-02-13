@@ -23,7 +23,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 // ./gradlew cleanBuildCache clean && ./gradlew installDebug
-// cd ~/Android/Sdk/emulator && ./emulator -avd $(./emulator -list-avds)
+// cd ~/Software/Android/Sdk/platform-tools && ./adb start-server
+// cd ~/Software/Android/Sdk/emulator && ./emulator -avd $(./emulator -list-avds)
 // heroku logs --tail --app stijanic-astroweb
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = MainActivity.class.getName();
